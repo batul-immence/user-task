@@ -1,0 +1,1524 @@
+{
+  "openapi": "3.0.1",
+  "info": {
+    "title": "User API",
+    "version": "1.0.0",
+    "description": ""
+  },
+  "servers": [
+    {
+      "url": "http://localhost:4000"
+    }
+  ],
+  "paths": {
+    "/": {
+      "get": {
+        "tags": ["Welcome"],
+        "summary": "home page",
+        "responses": {
+          "200": {
+            "description": "Successfull response"
+          },
+          "400": {
+            "description": "User not found",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse400"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse400"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse400"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Token provided not found",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse401"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse401"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse401"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Failed to authentication",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse403"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse403"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse403"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Something went wrong",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse500"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse500"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse500"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/user": {
+      "get": {
+        "tags": ["User"],
+        "summary": "get users list",
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "A sucessful response",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/SuccessResponse"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/SuccessResponse"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/SuccessResponse"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "User not found",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse400"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse400"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse400"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Token provided not found",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse401"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse401"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse401"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Failed to authentication",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse403"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse403"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse403"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Something went wrong",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse500"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse500"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse500"
+                }
+              }
+            }
+          }
+        }
+      },
+      "post": {
+        "tags": ["User"],
+        "summary": "create user",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/User"
+              }
+            },
+            "text/plain": {
+              "schema": {
+                "$ref": "#/components/schemas/User"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/User"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/User"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "User created Successfully",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/SuccessResponse"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/SuccessResponse"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/SuccessResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Employee not found",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse400"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse400"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse400"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Token provided not found",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse401"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse401"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse401"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Failed to authentication",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse403"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse403"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse403"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Something went wrong",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse500"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse500"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse500"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/user/{id}": {
+      "get": {
+        "tags": ["User"],
+        "summary": "get user by id",
+        "parameters": [
+          {
+            "name": "id",
+            "description": "id of employee",
+            "required": true,
+            "in": "path",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "A sucessful response",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/SuccessResponse"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/SuccessResponse"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/SuccessResponse"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "User not found",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse400"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse400"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse400"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Token provided not found",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse401"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse401"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse401"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Failed to authentication",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse403"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse403"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse403"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Something went wrong",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse500"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse500"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse500"
+                }
+              }
+            }
+          }
+        }
+      },
+      "put": {
+        "tags": ["User"],
+        "summary": "update employee",
+        "parameters": [
+          {
+            "name": "id",
+            "description": "id of employee",
+            "required": true,
+            "in": "path",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/User"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/User"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/User"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Successfully updated",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/SuccessResponse"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/SuccessResponse"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/SuccessResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Employee not found",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse400"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse400"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse400"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Token provided not found",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse401"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse401"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse401"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Failed to authentication",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse403"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse403"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse403"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Something went wrong",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse500"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse500"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse500"
+                }
+              }
+            }
+          }
+        }
+      },
+      "delete": {
+        "tags": ["User"],
+        "summary": "delete employee by Id",
+        "parameters": [
+          {
+            "name": "id",
+            "description": "id of employee",
+            "required": true,
+            "in": "path",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/SuccessResponse"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/SuccessResponse"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/SuccessResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Employee not found",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse400"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse400"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse400"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Token provided not found",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse401"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse401"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse401"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Failed to authentication",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse403"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse403"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse403"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Something went wrong",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse500"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse500"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse500"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/auth/login": {
+      "post": {
+        "tags": ["Auth"],
+        "summary": "user login",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/UserLogin"
+              }
+            },
+            "text/plain": {
+              "schema": {
+                "$ref": "#/components/schemas/UserLogin"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/UserLogin"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/UserLogin"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "User created Successfully",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/SuccessResponse"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/SuccessResponse"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/SuccessResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Employee not found",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse400"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse400"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse400"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Token provided not found",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse401"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse401"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse401"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Failed to authentication",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse403"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse403"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse403"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Something went wrong",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse500"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse500"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse500"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/auth/register": {
+      "post": {
+        "tags": ["Auth"],
+        "summary": "user registration",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/UserRegistration"
+              }
+            },
+            "text/plain": {
+              "schema": {
+                "$ref": "#/components/schemas/UserRegistration"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/UserRegistration"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/UserRegistration"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "User created Successfully",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/SuccessResponse"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/SuccessResponse"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/SuccessResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Employee not found",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse400"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse400"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse400"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Token provided not found",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse401"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse401"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse401"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Failed to authentication",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse403"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse403"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse403"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Something went wrong",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse500"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse500"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse500"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/auth/forgotPassword": {
+      "post": {
+        "tags": ["Auth"],
+        "summary": "Forgot Password",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ForgotPassword"
+              }
+            },
+            "text/plain": {
+              "schema": {
+                "$ref": "#/components/schemas/ForgotPassword"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ForgotPassword"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/ForgotPassword"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "User created Successfully",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/SuccessResponse"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/SuccessResponse"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/SuccessResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Employee not found",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse400"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse400"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse400"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Token provided not found",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse401"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse401"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse401"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Failed to authentication",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse403"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse403"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse403"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Something went wrong",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse500"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse500"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse500"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/auth/updatePassword": {
+      "post": {
+        "tags": ["Auth"],
+        "summary": "Update Password",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/UpdatePassword"
+              }
+            },
+            "text/plain": {
+              "schema": {
+                "$ref": "#/components/schemas/UpdatePassword"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/UpdatePassword"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/UpdatePassword"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "User created Successfully",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/SuccessResponse"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/SuccessResponse"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/SuccessResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "User not found",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse400"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse400"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse400"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Token provided not found",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse401"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse401"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse401"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Failed to authentication",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse403"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse403"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse403"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Something went wrong",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse500"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse500"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse500"
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "User": {
+        "required": [
+          "full_name",
+          "mobile_no",
+          "email_id",
+          "address",
+          "blood_grp",
+          "username"
+        ],
+        "type": "object",
+        "properties": {
+          "full_name": {
+            "type": "string",
+            "description": "Full Name of the employee"
+          },
+          "mobile_no": {
+            "type": "string",
+            "description": "Mobile Number of the employee"
+          },
+          "email_id": {
+            "type": "string",
+            "description": "Email id of the employee"
+          },
+          "address": {
+            "type": "string",
+            "description": "Address of the employee"
+          },
+          "blood_grp": {
+            "type": "string",
+            "description": "Blood Group of the employee"
+          },
+          "username": {
+            "type": "string",
+            "description": "Full Name of the employee"
+          }
+        },
+        "additionalProperties": false
+      },
+      "UserRegistration": {
+        "required": [
+          "full_name",
+          "mobile_no",
+          "email_id",
+          "address",
+          "blood_grp",
+          "username",
+          "password"
+        ],
+        "type": "object",
+        "properties": {
+          "full_name": {
+            "type": "string",
+            "description": "Full Name of the employee"
+          },
+          "mobile_no": {
+            "type": "string",
+            "description": "Mobile Number of the employee"
+          },
+          "email_id": {
+            "type": "string",
+            "description": "Email id of the employee"
+          },
+          "address": {
+            "type": "string",
+            "description": "Address of the employee"
+          },
+          "blood_grp": {
+            "type": "string",
+            "description": "Blood Group of the employee"
+          },
+          "username": {
+            "type": "string",
+            "description": "Full Name of the employee"
+          },
+          "password": {
+            "type": "string",
+            "description": "Mobile Number of the employee"
+          }
+        },
+        "additionalProperties": false
+      },
+      "UserLogin": {
+        "required": [
+          "username",
+          "password"
+        ],
+        "type": "object",
+        "properties": {
+          "username": {
+            "type": "string",
+            "description": "usename of user"
+          },
+          "password": {
+            "type": "string",
+            "description": "password of user"
+          }
+        },
+        "additionalProperties": false
+      },
+      "ForgotPassword":{
+        "required": [
+          "email",
+          "password"
+        ],
+        "type": "object",
+        "properties": {
+          "email": {
+            "type": "string",
+            "description": "Email of the User."
+          },
+          "password": {
+            "type": "string",
+            "description": "New Password"
+          }
+        },
+        "additionalProperties": false
+      },
+      "UpdatePassword":{
+        "required": [
+          "email",
+          "oldPassword",
+          "newPassword"
+        ],
+        "type": "object",
+        "properties": {
+          "email": {
+            "type": "string",
+            "description": "Email of the user."
+          },
+          "oldPassword": {
+            "type": "string",
+            "description": "Old Password"
+          },
+          "newPassword": {
+            "type": "string",
+            "description": "New Password"
+          }
+        },
+        "additionalProperties": false
+      },
+      "SuccessResponse": {
+        "type": "object",
+        "properties": {
+          "isSuccess": {
+            "type": "boolean",
+            "example": true
+          },
+          "message": {
+            "type": "string",
+            "example": "message"
+          },
+          "code": {
+            "type": "integer",
+            "example": "200"
+          },
+          "data": {
+            "type": "object"
+          }
+        },
+        "additionalProperties": false
+      },
+      "ErrorResponse400": {
+        "type": "object",
+        "properties": {
+          "isSuccess": {
+            "type": "boolean",
+            "example": false
+          },
+          "message": {
+            "type": "string",
+            "example": "message"
+          },
+          "code": {
+            "type": "integer",
+            "example": "400"
+          },
+          "data": {
+            "type": "object"
+          }
+        },
+        "additionalProperties": false
+      },
+      "ErrorResponse401": {
+        "type": "object",
+        "properties": {
+          "isSuccess": {
+            "type": "boolean",
+            "example": false
+          },
+          "message": {
+            "type": "string",
+            "example": "message"
+          },
+          "code": {
+            "type": "integer",
+            "example": "401"
+          },
+          "data": {
+            "type": "object"
+          }
+        },
+        "additionalProperties": false
+      },
+      "ErrorResponse403": {
+        "type": "object",
+        "properties": {
+          "isSuccess": {
+            "type": "boolean",
+            "example": false
+          },
+          "message": {
+            "type": "string",
+            "example": "message"
+          },
+          "code": {
+            "type": "integer",
+            "example": "403"
+          },
+          "data": {
+            "type": "object"
+          }
+        },
+        "additionalProperties": false
+      },
+      "ErrorResponse500": {
+        "type": "object",
+        "properties": {
+          "isSuccess": {
+            "type": "boolean",
+            "example": false
+          },
+          "message": {
+            "type": "string",
+            "example": "Internal server error"
+          },
+          "code": {
+            "type": "integer",
+            "example": "500"
+          },
+          "data": {
+            "type": "object"
+          }
+        },
+        "additionalProperties": false
+      }
+    },
+    "securitySchemes": {
+      "bearerAuth" : {
+        "type": "apiKey",
+        "in": "header",
+        "name": "authentication",
+        "description": "JWT Authorization header using the apiKeyAuth."
+      }
+    }
+  },
+  "security": [
+    {
+      "bearerAuth": []
+    }
+  ],
+  "tags": [
+    {
+      "name": "Welcome"
+    },
+    {
+      "name": "Auth",
+      "description": "Authentication API"
+    },
+    {
+      "name": "User",
+      "description": "all users apis"
+    }
+  ]
+}
