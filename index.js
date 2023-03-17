@@ -4,7 +4,7 @@ const connection = require('./src/database/connection');
 const bodyParser = require('body-parser');
 const path = require('path');
 const cors = require('cors')
-const dotenv = require('dotenv');
+require('dotenv').config()
 const routers = require('./src/routes/routes');
 
 const swaggerUI = require('swagger-ui-express');
@@ -49,7 +49,6 @@ app.use(express.json());
 app.use('/', routers);
 
 app.use(cors())
-dotenv.config();
 
 app.use('/api', swaggerUI.serve, swaggerUI.setup(null, options));
 
